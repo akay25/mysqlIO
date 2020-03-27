@@ -2,6 +2,7 @@
  * mysql
  * Version 1.0 22th of August, 2015
  * Author : Ajay Masi
+ * Modified by : Rodrigo Tablado
  * Organisation : Shivy Inc.
  */
 
@@ -46,9 +47,9 @@ void mysql_close(){
 }
 int mysql_query(char *query){
 	Serial.print("query=");
-        Serial.println(query);
+    Serial.println(query);
 	int x = Serial.read();
-         if(x == '-' || x == '0')
+    if(x == '-' || x == '0')
         return 0;
         while( x <= 0){
          x = Serial.read();
@@ -64,11 +65,11 @@ String mysql_result_query(String query, String field){
   Serial.println(q);
   res = Serial.readString();
   if(res == "-")
-  return 0;
+	return "No results";
   while(res.length() <= 0){
-  res = Serial.readString();  
-  if(res == "-")
-  return 0;
-  }
+	res = Serial.readString();  
+	if(res == "-")
+		return "No results";
+	}
   return res;
 }
